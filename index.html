@@ -143,6 +143,7 @@ summary{cursor:pointer;font-weight:600;font-size:14px}
 .t-div{flex:none;border-top:0.75pt solid #000;margin:0.05in 0 0.03in}
 .t-stock{flex:none;height:0.26in;margin-bottom:0.03in;font-family:var(--cond);font-weight:800;letter-spacing:.02em}
 .t-color{flex:none;height:0.2in;font-family:var(--cond);font-weight:700}
+.row-cap{position:absolute;left:50%;transform:translate(-50%,-50%);z-index:2;background:var(--brand);color:#fff;font-family:var(--sans);font-weight:700;font-size:13pt;line-height:1;padding:0.07in 0.2in;border-radius:0.2in;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.25);pointer-events:none}
 .tag-note{position:absolute;left:0;right:0;bottom:0.14in;text-align:center;font-size:6pt;color:#888}
 
 /* Window label */
@@ -163,6 +164,7 @@ summary{cursor:pointer;font-weight:600;font-size:14px}
   .sheet{box-shadow:none!important}
   .sheet:not(.outlines) .lbl{outline:none!important}
   .ph{visibility:hidden}
+  .row-cap{display:none!important}
 }
 </style>
 </head>
@@ -253,7 +255,6 @@ summary{cursor:pointer;font-weight:600;font-size:14px}
   <section class="preview" aria-label="Sheet preview">
     <div class="preview-head">
       <h2>Sheet preview</h2>
-      <span class="legend">Top row folder, middle row key tags, bottom row windows</span>
     </div>
     <div id="previewWrap" class="preview-wrap">
       <div id="scaler" class="scaler"><div id="sheet" class="sheet"></div></div>
@@ -529,6 +530,10 @@ summary{cursor:pointer;font-weight:600;font-size:14px}
         var y = (ROW_Y[r] + state.dy).toFixed(4);
         html += '<div class="lbl" style="left:' + x + 'in;top:' + y + 'in">' + inner + '</div>';
       }
+    }
+    var caps = ["Stickers for Folder", "Stickers for Key Tag", "Stickers for Car Windshield"];
+    for(var i=0;i<3;i++){
+      html += '<div class="row-cap" aria-hidden="true" style="top:' + (ROW_Y[i] + state.dy).toFixed(4) + 'in">' + caps[i] + '</div>';
     }
     var sheet = $("sheet");
     sheet.innerHTML = html;
