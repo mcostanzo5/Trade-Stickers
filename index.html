@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicle Intake Labels | Avery 5524</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#0772bc;
+  --brand-ink:#05558d;
+  --bg:#eef2f6;
+  --panel:#ffffff;
+  --ink:#14212e;
+  --muted:#5b6b7b;
+  --line:#d3dbe4;
+  --field:#f7f9fb;
+  --ok:#1e7a3c;
+  --warn:#9a5600;
+  --err:#b3261e;
+  --sans:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --cond:"Barlow Condensed","Arial Narrow","Roboto Condensed",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1720;
+    --panel:#17212c;
+    --ink:#e6edf3;
+    --muted:#9aabbb;
+    --line:#2b3a49;
+    --field:#1d2935;
+    --brand-ink:#6cb8ee;
+    --ok:#6fd08f;
+    --warn:#f0a94b;
+    --err:#ff8a80;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
+
+/* Header */
+.bar{background:var(--brand);color:#fff}
+.bar-in{max-width:1400px;margin:0 auto;padding:14px 24px;display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap}
+.bar h1{margin:0;font-family:var(--cond);font-weight:700;font-size:27px;line-height:1.1}
+.bar p{margin:0;opacity:.88;font-size:14px}
+
+/* Layout */
+.app{max-width:1400px;margin:0 auto;padding:20px 24px 48px;display:grid;grid-template-columns:minmax(320px,400px) 1fr;gap:28px;align-items:start}
+@media (max-width:880px){.app{grid-template-columns:1fr;padding:16px}}
+
+/* Controls */
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.grp{padding:16px 18px;border-top:1px solid var(--line)}
+.grp:first-child{border-top:0}
+.grp h2{margin:0 0 10px;font-size:15px;font-weight:700}
+.lbl-t{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.field{margin-top:12px}
+.field:first-child{margin-top:0}
+input[type=text],input[type=date],input[type=number]{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-height:40px}
+input:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.vin-row{display:flex;gap:8px}
+#vin{font-family:var(--cond);font-size:25px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:6px 12px}
+#vin::placeholder{font-family:var(--sans);font-size:15px;letter-spacing:0;text-transform:none;font-weight:400}
+.vin-meta{display:flex;justify-content:space-between;gap:12px;margin-top:6px;font-size:13px;color:var(--muted);min-height:20px}
+.status.busy{color:var(--muted)}
+.status.ok{color:var(--ok)}
+.status.warn{color:var(--warn)}
+.status.err{color:var(--err)}
+.row3{display:grid;grid-template-columns:84px 1fr 1fr;gap:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.row3{grid-template-columns:72px 1fr}.row3 .span-sm{grid-column:1/-1}}
+.btn{font:inherit;font-weight:600;border-radius:6px;border:1px solid var(--brand);background:var(--brand);color:#fff;padding:8px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--brand-ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--brand)}
+.btn.wide{width:100%;padding:12px;font-size:17px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.link{background:none;border:0;padding:0;font:inherit;font-size:13px;color:var(--brand-ink);text-decoration:underline;cursor:pointer}
+.inline{display:flex;gap:8px;align-items:center}
+.inline input{flex:1}
+.hint{display:block;font-size:12.5px;color:var(--muted);margin-top:5px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;background:var(--field);color:var(--ink);border:0;padding:8px 18px;cursor:pointer;min-height:40px}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed=true]{background:var(--brand);color:#fff}
+.radios{display:flex;gap:16px;flex-wrap:wrap}
+.radios label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.stack{display:grid;gap:10px}
+.tips{font-size:13px;color:var(--muted);margin:10px 0 0}
+details{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+.check{display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer;font-size:14px}
+
+/* Preview */
+.preview-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.preview-head h2{margin:0;font-size:15px}
+.legend{font-size:13px;color:var(--muted)}
+.preview-wrap{width:100%;max-width:820px;overflow:hidden}
+.scaler{width:8.5in;transform-origin:top left}
+
+/* Sheet (always paper colored) */
+.sheet{width:8.5in;height:11in;position:relative;background:#fff;color:#000;box-shadow:0 1px 2px rgba(0,0,0,.08),0 10px 28px rgba(20,33,46,.14)}
+.sheet .lbl{position:absolute;width:4in;height:3.3333in;overflow:hidden;font-family:var(--sans);color:#000;border-radius:0.06in}
+@media screen{.sheet .lbl{outline:1px solid #dbe2ea}}
+.sheet.outlines .lbl{outline:0.6pt dashed #777}
+.cap{display:block;font-size:6.5pt;font-weight:600;color:#444;line-height:1.15;letter-spacing:.02em}
+.fit1{white-space:nowrap;overflow:hidden;line-height:1}
+.fitm{overflow:hidden;line-height:1.02;overflow-wrap:anywhere}
+.ph{color:#c3ccd5}
+.wline{display:inline-block;width:100%;border-bottom:0.75pt solid #000;height:0.85em}
+
+/* Folder label */
+.fold{position:absolute;inset:0.2in;display:flex;flex-direction:column}
+.f-top{height:0.32in;flex:none;display:flex;justify-content:space-between;align-items:center;border-bottom:1.25pt solid #000;font-size:10pt}
+.f-top b{font-weight:700}
+.keys{display:flex;align-items:center;gap:4pt;font-weight:600}
+.kbox{width:0.15in;height:0.15in;border:1pt solid #000;display:inline-flex;align-items:center;justify-content:center;font-size:9pt;font-weight:800;line-height:1}
+.kbox.first{margin-left:5pt}
+.kbox.second{margin-left:8pt}
+.f-stock{margin-top:0.07in;flex:none}
+.f-stock .big{height:0.84in;font-family:var(--cond);font-weight:800}
+.f-ymm{height:0.36in;flex:none;margin-top:0.02in;font-family:var(--cond);font-weight:700}
+.f-grid{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:0.06in 0.16in;border-top:0.75pt solid #000;padding-top:0.06in}
+.full{grid-column:1/-1}
+.val{height:0.24in;font-weight:700}
+.vinv{letter-spacing:.05em}
+
+/* Key tag label */
+.tag{position:absolute;left:0.7in;top:0.34in;width:2.6in;height:2.5in;display:flex;border:0.6pt dashed #777}
+.panel{width:1.3in;height:100%;padding:0.08in 0.09in;display:flex;flex-direction:column}
+.panel.front{border-right:0.6pt dotted #777}
+.hole{height:0.34in;flex:none;display:flex;justify-content:center}
+.hole i{width:0.2in;height:0.2in;border-radius:50%;border:0.6pt solid #aaa;margin-top:0.03in}
+.cond{flex:none;height:0.25in;background:#000;color:#fff;font-family:var(--cond);font-weight:800;font-size:12pt;letter-spacing:.14em;text-align:center;line-height:0.25in;border-radius:2pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.t-year{flex:none;height:0.24in;margin-top:0.06in;font-family:var(--cond);font-weight:700}
+.t-make{flex:none;height:0.22in;margin-top:0.01in;font-family:var(--cond);font-weight:700}
+.t-model{flex:1;min-height:0;margin-top:0.02in;font-family:var(--cond);font-weight:800}
+.t-div{flex:none;border-top:0.75pt solid #000;margin:0.05in 0 0.03in}
+.t-stock{flex:none;height:0.26in;margin-bottom:0.03in;font-family:var(--cond);font-weight:800;letter-spacing:.02em}
+.t-color{flex:none;height:0.2in;font-family:var(--cond);font-weight:700}
+.tag-note{position:absolute;left:0;right:0;bottom:0.14in;text-align:center;font-size:6pt;color:#888}
+
+/* Window label */
+.win{position:absolute;top:0.2in;bottom:0.2in;left:0.22in;right:0.22in;display:flex;flex-direction:column}
+.w-year{height:0.44in;flex:none;font-family:var(--cond);font-weight:700}
+.w-make{height:0.54in;flex:none;font-family:var(--cond);font-weight:800}
+.w-model{height:0.68in;flex:none;font-family:var(--cond);font-weight:800}
+.w-rule{flex:none;border-top:1.5pt solid #000;margin:0.07in 0}
+.w-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:0.07in 0.12in}
+
+/* Print */
+@page{size:letter;margin:0}
+@media print{
+  html,body{background:#fff!important;height:11in;overflow:hidden}
+  .bar,.controls,.preview-head{display:none!important}
+  .app,.preview,.preview-wrap{display:block!important;margin:0!important;padding:0!important;max-width:none!important;width:auto!important;height:auto!important;overflow:visible!important}
+  .scaler{transform:none!important;width:8.5in}
+  .sheet{box-shadow:none!important}
+  .sheet:not(.outlines) .lbl{outline:none!important}
+  .ph{visibility:hidden}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <h1>Vehicle intake labels</h1>
+    <p>Avery 5524 sheet: folder, key tags, and window labels from one VIN.</p>
+  </div>
+</header>
+
+<main class="app">
+  <section class="controls" aria-label="Vehicle details">
+    <div class="grp">
+      <label for="vin" class="lbl-t">VIN</label>
+      <div class="vin-row">
+        <input id="vin" type="text" maxlength="20" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="Scan or type the 17-character VIN">
+        <button id="decodeBtn" type="button" class="btn">Decode</button>
+      </div>
+      <div class="vin-meta"><span id="vinCount">0 of 17</span><span id="status" class="status" role="status" aria-live="polite"></span></div>
+    </div>
+
+    <div class="grp">
+      <h2>Vehicle</h2>
+      <div class="row3">
+        <div><label class="lbl-t" for="year">Year</label><input id="year" type="text" inputmode="numeric" maxlength="4"></div>
+        <div><label class="lbl-t" for="make">Make</label><input id="make" type="text"></div>
+        <div class="span-sm"><label class="lbl-t" for="model">Model</label><input id="model" type="text"></div>
+      </div>
+      <div class="field">
+        <span class="lbl-t" id="condLbl">New or used</span>
+        <div class="seg" role="group" aria-labelledby="condLbl">
+          <button type="button" data-cond="new" aria-pressed="false">New</button>
+          <button type="button" data-cond="used" aria-pressed="true">Used</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h2>Intake details</h2>
+      <div class="field">
+        <label class="lbl-t" for="stock">Stock #</label>
+        <input id="stock" type="text" autocomplete="off" spellcheck="false">
+        <span class="hint" id="stockHint">Last 8 of the VIN, ending in A. Type to change it.</span>
+      </div>
+      <div class="row2 field">
+        <div><label class="lbl-t" for="miles">Mileage</label><input id="miles" type="text" inputmode="numeric" autocomplete="off"></div>
+        <div><label class="lbl-t" for="color">Exterior color</label><input id="color" type="text" list="colors" autocomplete="off"></div>
+      </div>
+      <datalist id="colors">
+        <option value="Black"><option value="White"><option value="Silver"><option value="Gray"><option value="Red"><option value="Blue"><option value="Green"><option value="Brown"><option value="Beige"><option value="Gold"><option value="Orange"><option value="Yellow"><option value="Purple">
+      </datalist>
+      <div class="field">
+        <label class="lbl-t" for="date">Date of intake</label>
+        <div class="inline">
+          <input id="date" type="date">
+          <button id="todayBtn" type="button" class="btn ghost">Today</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="lbl-t" id="keysLbl"># of Keys Present</span>
+        <div class="radios" role="radiogroup" aria-labelledby="keysLbl">
+          <label><input type="radio" name="keys" value="1"> 1 Key</label>
+          <label><input type="radio" name="keys" value="2"> 2 Keys</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="stack">
+        <button id="printBtn" type="button" class="btn wide">Print sheet</button>
+        <button id="nextBtn" type="button" class="btn ghost">Start next vehicle</button>
+      </div>
+      <p class="tips">In the print dialog, set scale to 100% (Actual size), margins to None, and turn off headers and footers.</p>
+      <details>
+        <summary>Printer alignment</summary>
+        <p class="tips">If the print lands off the labels, test on plain paper with outlines on, hold it over a label sheet, and nudge. Positive numbers move right and down. Saved on this computer.</p>
+        <div class="row2 field">
+          <div><label class="lbl-t" for="dx">Move right (in)</label><input id="dx" type="number" step="0.01" min="-0.5" max="0.5" value="0"></div>
+          <div><label class="lbl-t" for="dy">Move down (in)</label><input id="dy" type="number" step="0.01" min="-0.5" max="0.5" value="0"></div>
+        </div>
+        <label class="check"><input id="outlines" type="checkbox"> Print label outlines (for test prints)</label>
+        <label class="check"><input id="hole" type="checkbox" checked> Leave room for the key tag hole</label>
+      </details>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Sheet preview">
+    <div class="preview-head">
+      <h2>Sheet preview</h2>
+      <span class="legend">Top row folder, middle row key tags, bottom row windows</span>
+    </div>
+    <div id="previewWrap" class="preview-wrap">
+      <div id="scaler" class="scaler"><div id="sheet" class="sheet"></div></div>
+    </div>
+  </section>
+</main>
+
+<noscript><p style="padding:24px">This tool needs JavaScript turned on.</p></noscript>
+
+<script>
+(function(){
+  "use strict";
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  // Avery 5524 geometry (inches): 4" x 3-1/3", 2 across, 3 down, letter sheet
+  var COL_X = [0.15625, 4.34375];
+  var ROW_Y = [0.5, 3.83333, 7.16667];
+
+  var SETTINGS_KEY = "lg5524.settings";
+
+  function todayISO(){
+    var d = new Date();
+    var m = String(d.getMonth()+1).padStart(2,"0");
+    var day = String(d.getDate()).padStart(2,"0");
+    return d.getFullYear()+"-"+m+"-"+day;
+  }
+
+  var state = {
+    vin:"", year:"", make:"", model:"",
+    cond:"used",
+    stock:"", stockTouched:false,
+    miles:"", color:"",
+    date: todayISO(),
+    keys:"",
+    dx:0, dy:0, outlines:false, hole:true
+  };
+
+  // ---------- settings ----------
+  function loadSettings(){
+    try{
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      if(!raw) return;
+      var s = JSON.parse(raw);
+      if(typeof s.dx === "number") state.dx = s.dx;
+      if(typeof s.dy === "number") state.dy = s.dy;
+      if(typeof s.outlines === "boolean") state.outlines = s.outlines;
+      if(typeof s.hole === "boolean") state.hole = s.hole;
+    }catch(e){}
+  }
+  function saveSettings(){
+    try{
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify({dx:state.dx, dy:state.dy, outlines:state.outlines, hole:state.hole}));
+    }catch(e){}
+  }
+
+  // ---------- helpers ----------
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function val(v, ph){ return v ? esc(v) : '<span class="ph">'+esc(ph)+'</span>'; }
+  function writeIn(v){ return v ? esc(v) : '<span class="wline"></span>'; }
+
+  function fmtDate(iso){
+    if(!iso) return "";
+    var p = iso.split("-");
+    if(p.length !== 3) return iso;
+    return p[1]+"/"+p[2]+"/"+p[0];
+  }
+  function milesText(){
+    var n = parseInt(String(state.miles).replace(/\D/g,""), 10);
+    return isNaN(n) ? "" : n.toLocaleString("en-US")+" mi";
+  }
+
+  var KEEP_UPPER = {"GMC":1,"RAM":1,"BMW":1,"FIAT":1,"MINI":1,"SRT":1};
+  function titleCase(s){ return s.toLowerCase().replace(/(^|[\s\-\/])([a-z])/g, function(m,a,b){ return a+b.toUpperCase(); }); }
+  function fmtMake(m){
+    m = (m || "").trim();
+    if(KEEP_UPPER[m.toUpperCase()]) return m.toUpperCase();
+    if(m && m === m.toUpperCase()) return titleCase(m);
+    return m;
+  }
+
+  function sanitizeVin(raw){
+    var v = String(raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    // Some barcode VINs carry a leading I (import flag): 18 characters
+    if(v.length === 18 && v.charAt(0) === "I") v = v.slice(1);
+    return v.slice(0, 17);
+  }
+  function defaultStock(vin){
+    return vin.length >= 8 ? vin.slice(-8, -1) + "A" : "";
+  }
+
+  var TRANSLIT = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,J:1,K:2,L:3,M:4,N:5,P:7,R:9,S:2,T:3,U:4,V:5,W:6,X:7,Y:8,Z:9};
+  var WEIGHTS = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2];
+  function checkDigitOk(v){
+    var sum = 0;
+    for(var i=0;i<17;i++){
+      var c = v.charAt(i);
+      var n = /\d/.test(c) ? +c : TRANSLIT[c];
+      if(n === undefined) return false;
+      sum += n * WEIGHTS[i];
+    }
+    var r = sum % 11;
+    return v.charAt(8) === (r === 10 ? "X" : String(r));
+  }
+
+  function setStatus(kind, text){
+    var el = $("status");
+    el.className = "status " + (kind || "");
+    el.textContent = text || "";
+  }
+
+  // ---------- condition ----------
+  function syncCondUI(){
+    document.querySelectorAll(".seg button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.cond === state.cond));
+    });
+  }
+
+  // ---------- decode ----------
+  var lastDecoded = "";
+  var decodeTimer = null;
+
+  function decode(force){
+    var vin = state.vin;
+    if(vin.length !== 17){
+      setStatus("warn", "Enter all 17 characters to decode.");
+      return;
+    }
+    if(/[IOQ]/.test(vin)){
+      setStatus("err", "VINs never contain I, O, or Q. Check for 1 and 0.");
+      return;
+    }
+    if(!force && vin === lastDecoded) return;
+    lastDecoded = vin;
+
+    var cdOk = checkDigitOk(vin);
+    setStatus("busy", "Decoding...");
+    $("decodeBtn").disabled = true;
+
+    var ctrl = ("AbortController" in window) ? new AbortController() : null;
+    var t = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 12000);
+
+    fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/" + encodeURIComponent(vin) + "?format=json", ctrl ? {signal: ctrl.signal} : {})
+      .then(function(r){
+        if(!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function(j){
+        if(state.vin !== vin) return; // VIN changed while waiting
+        var d = j && j.Results && j.Results[0];
+        if(!d || !d.Make){
+          setStatus("err", "NHTSA couldn't decode this VIN. Type the year, make, and model.");
+          return;
+        }
+        state.year = (d.ModelYear || "").trim();
+        state.make = fmtMake(d.Make);
+        state.model = (d.Model || "").trim();
+        $("year").value = state.year;
+        $("make").value = state.make;
+        $("model").value = state.model;
+
+        var code = String(d.ErrorCode || "0").trim();
+        if(!cdOk){
+          setStatus("warn", "Decoded, but the check digit doesn't match. Double-check the VIN.");
+        }else if(code.charAt(0) !== "0"){
+          var msg = String(d.ErrorText || "").split(";")[0].replace(/^\d+\s*-\s*/, "");
+          if(msg.length > 110) msg = msg.slice(0,107) + "...";
+          setStatus("warn", "Decoded with a note from NHTSA: " + msg);
+        }else{
+          setStatus("ok", "Decoded " + [state.year, state.make, state.model].filter(Boolean).join(" ") + ".");
+        }
+        render();
+        if(!state.color) $("color").focus();
+      })
+      .catch(function(){
+        if(state.vin !== vin) return;
+        lastDecoded = "";
+        setStatus("err", "Couldn't reach NHTSA. Check the connection and try Decode again, or type the year, make, and model.");
+      })
+      .then(function(){
+        clearTimeout(t);
+        $("decodeBtn").disabled = false;
+      });
+  }
+
+  // ---------- label templates ----------
+  function ymmText(){
+    return [state.year, state.make, state.model].filter(Boolean).join(" ");
+  }
+
+  function folderLabel(){
+    var k1 = state.keys === "1" ? "&#10003;" : "";
+    var k2 = state.keys === "2" ? "&#10003;" : "";
+    return '' +
+      '<div class="fold">' +
+        '<div class="f-top">' +
+          '<div>Intake <b>' + esc(fmtDate(state.date)) + '</b></div>' +
+          '<div class="keys"># of Keys Present<span class="kbox first">' + k1 + '</span>1<span class="kbox second">' + k2 + '</span>2</div>' +
+        '</div>' +
+        '<div class="f-stock"><span class="cap">Stock #</span>' +
+          '<div class="big fit1" data-fit="66" data-min="18">' + val(state.stock, "Stock #") + '</div></div>' +
+        '<div class="f-ymm fit1" data-fit="24" data-min="9">' + val(ymmText(), "Year Make Model") + '</div>' +
+        '<div class="f-grid">' +
+          '<div class="full"><span class="cap">VIN</span><div class="val vinv fit1" data-fit="15" data-min="7">' + val(state.vin, "VIN") + '</div></div>' +
+          '<div><span class="cap">Exterior color</span><div class="val fit1" data-fit="13" data-min="7">' + writeIn(state.color) + '</div></div>' +
+          '<div><span class="cap">Mileage</span><div class="val fit1" data-fit="13" data-min="7">' + writeIn(milesText()) + '</div></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function keyTagLabel(){
+    var hole = state.hole ? '<div class="hole"><i></i></div>' : '';
+    var side = hole +
+      '<div class="cond">' + (state.cond === "used" ? "USED" : "NEW") + '</div>' +
+      '<div class="t-year fit1" data-fit="18" data-min="8">' + val(state.year, "Year") + '</div>' +
+      '<div class="t-make fit1" data-fit="15" data-min="7">' + val(state.make, "Make") + '</div>' +
+      '<div class="t-model fitm" data-fit="20" data-min="7">' + val(state.model, "Model") + '</div>' +
+      '<div class="t-div"></div>' +
+      '<span class="cap">Stock #</span>' +
+      '<div class="t-stock fit1" data-fit="20" data-min="8">' + val(state.stock, "Stock #") + '</div>' +
+      '<span class="cap">Exterior color</span>' +
+      '<div class="t-color fit1" data-fit="13" data-min="6">' + writeIn(state.color) + '</div>';
+    return '' +
+      '<div class="tag">' +
+        '<div class="panel front">' + side + '</div>' +
+        '<div class="panel back">' + side + '</div>' +
+      '</div>' +
+      '<div class="tag-note">Trim on the dashed line, fold on the dotted line</div>';
+  }
+
+  function windowLabel(){
+    return '' +
+      '<div class="win">' +
+        '<div class="w-year fit1" data-fit="34" data-min="12">' + val(state.year, "Year") + '</div>' +
+        '<div class="w-make fit1" data-fit="42" data-min="12">' + val(state.make, "Make") + '</div>' +
+        '<div class="w-model fit1" data-fit="50" data-min="12">' + val(state.model, "Model") + '</div>' +
+        '<div class="w-rule"></div>' +
+        '<div class="w-grid">' +
+          '<div class="full"><span class="cap">VIN</span><div class="val vinv fit1" data-fit="15" data-min="7">' + val(state.vin, "VIN") + '</div></div>' +
+          '<div><span class="cap">Stock #</span><div class="val fit1" data-fit="13" data-min="7">' + val(state.stock, "Stock #") + '</div></div>' +
+          '<div><span class="cap">Mileage</span><div class="val fit1" data-fit="13" data-min="7">' + writeIn(milesText()) + '</div></div>' +
+          '<div><span class="cap">Exterior color</span><div class="val fit1" data-fit="13" data-min="7">' + writeIn(state.color) + '</div></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // ---------- render ----------
+  function fitAll(root){
+    root.querySelectorAll("[data-fit]").forEach(function(el){
+      var size = parseFloat(el.dataset.fit);
+      var min = parseFloat(el.dataset.min || "6");
+      el.style.fontSize = size + "pt";
+      var guard = 0;
+      while((el.scrollWidth > el.clientWidth + 0.5 || el.scrollHeight > el.clientHeight + 0.5) && size > min && guard < 200){
+        size -= 0.5;
+        el.style.fontSize = size + "pt";
+        guard++;
+      }
+    });
+  }
+
+  function render(){
+    var rows = [folderLabel, keyTagLabel, windowLabel];
+    var html = "";
+    for(var r=0;r<3;r++){
+      var inner = rows[r]();
+      for(var c=0;c<2;c++){
+        var x = (COL_X[c] + state.dx).toFixed(4);
+        var y = (ROW_Y[r] + state.dy).toFixed(4);
+        html += '<div class="lbl" style="left:' + x + 'in;top:' + y + 'in">' + inner + '</div>';
+      }
+    }
+    var sheet = $("sheet");
+    sheet.innerHTML = html;
+    sheet.classList.toggle("outlines", state.outlines);
+    fitAll(sheet);
+  }
+
+  function scalePreview(){
+    var wrap = $("previewWrap");
+    var pxPerIn = 96;
+    var s = Math.min(1, wrap.clientWidth / (8.5 * pxPerIn));
+    $("scaler").style.transform = "scale(" + s + ")";
+    wrap.style.height = (11 * pxPerIn * s) + "px";
+  }
+
+  // ---------- events ----------
+  function bind(){
+    var vinEl = $("vin");
+
+    vinEl.addEventListener("input", function(){
+      var clean = sanitizeVin(vinEl.value);
+      if(vinEl.value !== clean) vinEl.value = clean;
+      state.vin = clean;
+      $("vinCount").textContent = clean.length + " of 17";
+      if(!state.stockTouched){
+        state.stock = defaultStock(clean);
+        $("stock").value = state.stock;
+      }
+      if(clean.length < 17){
+        setStatus("", "");
+        if(/[IOQ]/.test(clean)) setStatus("err", "VINs never contain I, O, or Q. Check for 1 and 0.");
+      }
+      render();
+      clearTimeout(decodeTimer);
+      if(clean.length === 17) decodeTimer = setTimeout(function(){ decode(false); }, 250);
+    });
+    vinEl.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){ e.preventDefault(); clearTimeout(decodeTimer); decode(true); }
+    });
+    $("decodeBtn").addEventListener("click", function(){ clearTimeout(decodeTimer); decode(true); });
+
+    ["year","make","model","color"].forEach(function(id){
+      $(id).addEventListener("input", function(){
+        state[id] = $(id).value.trim();
+        render();
+      });
+    });
+
+    $("miles").addEventListener("input", function(){
+      var digits = $("miles").value.replace(/\D/g, "").slice(0, 7);
+      state.miles = digits;
+      var shown = digits ? Number(digits).toLocaleString("en-US") : "";
+      if($("miles").value !== shown) $("miles").value = shown;
+      render();
+    });
+
+    $("stock").addEventListener("input", function(){
+      var v = $("stock").value.toUpperCase();
+      if($("stock").value !== v) $("stock").value = v;
+      state.stock = v.trim();
+      state.stockTouched = true;
+      updateStockHint();
+      render();
+    });
+
+    document.querySelectorAll(".seg button").forEach(function(b){
+      b.addEventListener("click", function(){
+        state.cond = b.dataset.cond;
+        syncCondUI();
+        render();
+      });
+    });
+
+    $("date").addEventListener("input", function(){
+      state.date = $("date").value || todayISO();
+      render();
+    });
+    $("todayBtn").addEventListener("click", function(){
+      state.date = todayISO();
+      $("date").value = state.date;
+      render();
+    });
+
+    document.querySelectorAll('input[name=keys]').forEach(function(r){
+      r.addEventListener("change", function(){ state.keys = r.value; render(); });
+    });
+
+    $("dx").addEventListener("input", function(){ state.dx = clampOffset($("dx").value); saveSettings(); render(); });
+    $("dy").addEventListener("input", function(){ state.dy = clampOffset($("dy").value); saveSettings(); render(); });
+    $("outlines").addEventListener("change", function(){ state.outlines = $("outlines").checked; saveSettings(); render(); });
+    $("hole").addEventListener("change", function(){ state.hole = $("hole").checked; saveSettings(); render(); });
+
+    $("printBtn").addEventListener("click", function(){
+      var missing = missingFields();
+      if(missing.length){
+        if(!confirm("These fields aren't filled in:\n\n" + missing.join("\n") + "\n\nPrint anyway?")) return;
+      }
+      render();
+      window.print();
+    });
+
+    $("nextBtn").addEventListener("click", resetVehicle);
+
+    window.addEventListener("beforeprint", function(){ fitAll($("sheet")); });
+
+    if("ResizeObserver" in window){
+      new ResizeObserver(scalePreview).observe($("previewWrap"));
+    }else{
+      window.addEventListener("resize", scalePreview);
+    }
+  }
+
+  function missingFields(){
+    var m = [];
+    if(state.vin.length !== 17) m.push("VIN (17 characters)");
+    if(!state.year) m.push("Year");
+    if(!state.make) m.push("Make");
+    if(!state.model) m.push("Model");
+    if(!state.stock) m.push("Stock #");
+    if(!state.miles) m.push("Mileage");
+    if(!state.color) m.push("Exterior color");
+    if(!state.date) m.push("Date of intake");
+    if(state.keys !== "1" && state.keys !== "2") m.push("# of Keys Present");
+    return m;
+  }
+
+  function clampOffset(v){
+    var n = parseFloat(v);
+    if(isNaN(n)) return 0;
+    return Math.max(-0.5, Math.min(0.5, n));
+  }
+
+  function updateStockHint(){
+    var h = $("stockHint");
+    if(state.stockTouched){
+      h.innerHTML = 'Custom stock #. <button type="button" class="link" id="stockReset">Use the VIN default</button>';
+      $("stockReset").addEventListener("click", function(){
+        state.stockTouched = false;
+        state.stock = defaultStock(state.vin);
+        $("stock").value = state.stock;
+        updateStockHint();
+        render();
+      });
+    }else{
+      h.textContent = "Last 8 of the VIN, ending in A. Type to change it.";
+    }
+  }
+
+  function resetVehicle(){
+    state.vin = ""; state.year = ""; state.make = ""; state.model = "";
+    state.stock = ""; state.stockTouched = false;
+    state.miles = ""; state.color = "";
+    state.cond = "used";
+    state.keys = "";
+    state.date = todayISO();
+    lastDecoded = "";
+    ["vin","year","make","model","stock","miles","color"].forEach(function(id){ $(id).value = ""; });
+    $("date").value = state.date;
+    document.querySelectorAll('input[name=keys]').forEach(function(r){ r.checked = false; });
+    $("vinCount").textContent = "0 of 17";
+    setStatus("", "");
+    updateStockHint();
+    syncCondUI();
+    render();
+    $("vin").focus();
+  }
+
+  // ---------- init ----------
+  loadSettings();
+  $("date").value = state.date;
+  $("dx").value = state.dx;
+  $("dy").value = state.dy;
+  $("outlines").checked = state.outlines;
+  $("hole").checked = state.hole;
+  bind();
+  syncCondUI();
+  render();
+  scalePreview();
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(render);
+  }
+  $("vin").focus();
+})();
+</script>
+</body>
+</html>
